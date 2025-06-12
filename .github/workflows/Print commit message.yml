@@ -1,0 +1,17 @@
+name : Print Commit Message
+on:
+  push:
+      bramches:
+          - 'main'
+jobs:
+    print-message:
+        runs-on: ubuntu-latest
+
+        steps: 
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Print Message
+              run: |
+                echo "Commit Message:"
+                git log -1 --pretty=%B
