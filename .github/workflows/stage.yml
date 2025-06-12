@@ -1,0 +1,29 @@
+name: Pipeline With Stages
+on:
+  push:
+      branches:
+          - 'main '
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+            - name: Build Project
+              run: echo "Building The Project....."
+    test:
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+            - name: Test Project
+              run: echo "Running tests...."
+    Deploy:
+        runs-on: ubuntu-latest
+        needs: test
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+            - name: Deploy Project
+              run: echo "Deploying The Project....."    
